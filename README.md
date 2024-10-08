@@ -37,7 +37,7 @@
 
 1. Download the repository to a directory you can find with:
    1. `git clone obs-sdr-controller`. Recommended for easier updating in future.
-   2. or if your machine does not have `git`. Grab the repository as `zip` file and extract it to a directory of your choosing
+   2. or if your machine does not have `git`. [Grab the repository as `zip` file](https://github.com/PaulusParssinen/obs-sdr-controller/archive/refs/heads/master.zip) and extract it to a directory of your choosing
 2. In order to interact with the live broadcast chat, we need to use Youtube Data API. Follow the guide below or the official guide at https://developers.google.com/youtube/v3/live/getting-started#before-you-start
    1. Create a project in the [Google Developers Console](https://console.developers.google.com/).
    2. Search for YouTube Data API v3 and enable it. Now open YouTube Data API v3 management page.
@@ -57,7 +57,7 @@ Launch the script by running `python main.py` in the terminal.
 ## Commands
 
 > [!WARNING]
-> This is still draft of the command to be implemented..
+> This is still draft of the commands to be implemented..
 
 - `!preset [preset_id] [?freq]`
   - Switches to the specified preset and optionally overrides the frequency.
