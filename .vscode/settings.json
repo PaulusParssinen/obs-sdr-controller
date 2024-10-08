@@ -1,0 +1,7 @@
+{
+  "python.languageServer": "None", // basedbypright
+  "basedpyright.analysis.typeCheckingMode": "standard",
+  "basedpyright.analysis.autoImportCompletions": true,
+  "editor.inlayHints.enabled": "off",
+  "files.exclude": { ".venv/": true },
+}

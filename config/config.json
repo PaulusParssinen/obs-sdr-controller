@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "sdr": {
+    "fallback": {
+      "sdr": "kph",
+      "preset": "11175"
+    },
+    "kiwis": [
+      {
+        "id": "kph",
+        "nickname": "KPH (California)",
+        "url": "http://198.40.45.23:8073"
+      },
+      {
+        "id": "kph-lf",
+        "nickname": "KPH LF (California)",
+        "url": "http://198.40.45.23:8072",
+        "preset": "channelone"
+      },
+      {
+        "id": "lakesuperior",
+        "nickname": "Wisconsin",
+        "url": "http://21042.proxy.kiwisdr.com:8073"
+      }
+    ],
+    "base_preset": {
+      "zoom": 6,
+      "wf_colormap": 3,
+      "volume": 100,
+      "pb_width": "50,4000",
+      "obs_scene": "HF SDR Scene"
+    },
+    "presets": [
+      {
+        "id": "11175",
+        "freq": "11175",
+        "mode": "usb"
+      },
+      {
+        "id": "8992",
+        "freq": "8992",
+        "mode": "usb"
+      },
+      {
+        "id": "channelone",
+        "obs_scene": "VLF SDR Scene",
+        "freq": "27.2",
+        "mode": "cw",
+        "extension": "fsk,shift:50,baud:50,ITA2,5N1V,inverted:1"
+      }
+    ]
+  },
+  "obs": {
+    "websocket_port": 4455,
+    "scenes": [
+      {
+        "name": "HF SDR Scene",
+        "browser_source": {
+          "name": "HF SDR Browser",
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      {
+        "name": "VLF SDR Scene",
+        "browser_source": {
+          "name": "VLF SDR Browser",
+          "width": 1920,
+          "height": 1080
+        }
+      }
+    ]
+  },
+  "youtube": {
+    "live_chat_poll_interval": 10
+  }
+}
