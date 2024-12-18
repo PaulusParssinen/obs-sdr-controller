@@ -9,4 +9,6 @@ sqlalchemy
 click
 schedule
 platformdirs
+debugpy
 textual
+textual-dev

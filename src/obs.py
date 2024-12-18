@@ -2,7 +2,7 @@ import obsws_python as obsws
 
 import logging
 
-from config import Config
+from .model.config.config import Config
 
 
 class OBS:

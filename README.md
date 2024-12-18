@@ -31,7 +31,7 @@
 
 - Python 3.10 or higher (preferably the latest).
 - OBS v27 or higher.
-  - You must install [obs-websocket](https://github.com/obsproject/obs-websocket/releases) 5.x (tested on [5.0.1](https://github.com/obsproject/obs-websocket/releases/tag/5.0.1)) **if you're on OBS v27**. You do not need to install if you're on newer version.
+  - **If you're on OBS v27**, you must install [obs-websocket](https://github.com/obsproject/obs-websocket/releases) 5.x (tested on [5.0.1](https://github.com/obsproject/obs-websocket/releases/tag/5.0.1)). You do not need to install if you're on newer version.
 
 ## Setup
 
@@ -48,11 +48,11 @@
 3. Launch command-line in the directory where the script was installed.
 4. Install the required Python packages by running `pip install -r requirements.txt` in the terminal.
 5. Configure the `config.json` file in the `config` directory to your liking. See the [Configuration](#configuration) section for more details.
-6. Run the script by executing `python main.py` in the terminal.
+6. Run the script by executing `python app.py` in the terminal.
 
 ## Usage
 
-Launch the script by running `python main.py` in the terminal.
+Launch the script by running `python app.py` in the terminal.
 
 ## Commands
 
@@ -66,18 +66,18 @@ Launch the script by running `python main.py` in the terminal.
       - Switches to the preset with the id `11175`
     - `!preset channelone 31.7`
       - Switches to the preset with the id `channelone` and sets the frequency to `31.7`
+- `!preset set [preset_id] [field] [value]`
+  - Edit the persistent preset values. Updates changes to the configuration file and if current preset; reloads the SDR.
+  - Examples:
+    - `!preset 11175 set zoom 10`
 - `!set [field] [value]`
-  - Update any of the fields such `freq` _without_ updating the preset
+  - Update any of the fields such `freq` **temporally** (i.e. _without_ updating the preset
 - `!sdr [sdr_id] [?preset_id] [?freq]`
   - Switches to the configured SDR (and to the preset and frequency)
   - Examples:
     - `!sdr kph`
     - `!sdr lakesuperior channelone`
     - `!sdr gulf channelone 22.7`
-- `!preset [id] set [field] [value]`
-  - Edit the persistent preset values. Updates changes to the configuration file and if current preset; reloads the SDR.
-  - Examples:
-    - `!preset 11175 set zoom 10`
 - `!fallback`
   - Resets to the `fallback` configuration.
 - `!reload preset/config/browser`
@@ -111,12 +111,12 @@ Almost everything about the scripts behavior can be configured in the `config.js
 
 #### The SDR specification
 
-| Field    | Type | Required | Description                                                          |
-| -------- | ---- | -------- | -------------------------------------------------------------------- |
-| id       | Text | ✅       | A **unique** name used to identify this SDR.                         |
-| url      | Text | ✅       | A well formed URL address of the SDR                                 |
-| nickname | Text | No       | A human readable nickname (for display purposes)                     |
-| preset   | Text | No       | The `id` of the preset to use upon load. Commands can override this. |
+| Field  | Type | Required | Description                                                          |
+| ------ | ---- | -------- | -------------------------------------------------------------------- |
+| id     | Text | ✅       | A **unique** name used to identify this SDR.                         |
+| url    | Text | ✅       | A well formed URL address of the SDR                                 |
+| name   | Text | No       | A human readable nickname (for display purposes)                     |
+| preset | Text | No       | The `id` of the preset to use upon load. Commands can override this. |
 
 #### Rotation
 
@@ -201,7 +201,7 @@ YouTube configuration section is used to configure the YouTube Data API.
 >
 > The `live_chat_poll_interval` is used to determine how often the script fetches new live broadcast comments to process. The default value is `10` seconds.
 >
-> The value is set to be the value you should be able use for 24/7 broadcast and avoid hitting the quota limits. For more information, see the official documentation at: [Quota and compliance audits](https://developers.google.com/youtube/v3/guides/quota_and_compliance_audits).
+> The default value is set to such that you can run the script on 24/7 broadcast and avoid hitting the quota limits for application in testing status. For more information, see the official documentation at: [Quota and compliance audits](https://developers.google.com/youtube/v3/guides/quota_and_compliance_audits).
 
 | Field                     | Type       | Default | Required | Description                                                                      |
 | ------------------------- | ---------- | ------- | -------- | -------------------------------------------------------------------------------- |

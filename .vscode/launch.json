@@ -2,12 +2,28 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Python: Current File",
+      "name": "Python: Debug OBS SDR Controller",
       "type": "python",
       "request": "launch",
-      "program": "${workspaceFolder}/main.py",
-      "console": "integratedTerminal",
-      "justMyCode": true
+      "program": "${workspaceFolder}/app.py",
+      "env": { "TEXTUAL": "devtools,debug" },
+      "args": ["--debug"],
+      "console": "externalTerminal",
+      "justMyCode": false,
+      "serverReadyAction": {
+        "action": "startDebugging",
+        "config": {
+          "name": "Python: Attach",
+          "type": "python",
+          "request": "attach",
+          "justMyCode": false,
+          "connect": {
+            "host": "localhost",
+            "port": 5678
+          }
+        },
+        "killOnServerStop": true
+      }
     }
   ]
 }

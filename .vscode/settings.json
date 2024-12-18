@@ -1,7 +1,14 @@
 {
-  "python.languageServer": "None", // basedbypright
-  "basedpyright.analysis.typeCheckingMode": "standard",
-  "basedpyright.analysis.autoImportCompletions": true,
+  //"basedpyright.analysis.typeCheckingMode": "standard",
+  //"basedpyright.analysis.autoImportCompletions": true,
+  "python.languageServer": "Pylance",
   "editor.inlayHints.enabled": "off",
-  "files.exclude": { ".venv/": true },
+  "python.analysis.autoImportCompletions": true,
+  "python.autoComplete.extraPaths": ["${workspaceFolder}/src"],
+  "python.analysis.extraPaths": ["${workspaceFolder}/src"],
+  "python.analysis.indexing": true,
+  "python.analysis.packageIndexDepths": [
+    { "name": "", "depth": 20, "includeAllSymbols": true }
+  ],
+  "files.exclude": { ".venv/": true, "**/*/__pycache__/": true }
 }

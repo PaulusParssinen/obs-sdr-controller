@@ -8,18 +8,18 @@
     "kiwis": [
       {
         "id": "kph",
-        "nickname": "KPH (California)",
+        "name": "KPH (California)",
         "url": "http://198.40.45.23:8073"
       },
       {
         "id": "kph-lf",
-        "nickname": "KPH LF (California)",
+        "name": "KPH LF (California)",
         "url": "http://198.40.45.23:8072",
         "preset": "channelone"
       },
       {
         "id": "lakesuperior",
-        "nickname": "Wisconsin",
+        "name": "Wisconsin",
         "url": "http://21042.proxy.kiwisdr.com:8073"
       }
     ],

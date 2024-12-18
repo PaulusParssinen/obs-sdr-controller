@@ -1,0 +1,34 @@
+$border-color-nofocus: $panel;
+$border-title-color-nofocus: $panel;
+$border-color-focus: $primary;
+$border-title-color-focus: $primary;
+
+/* Console */
+
+Console {
+  height: 50%;
+
+  border: round $border-color-nofocus;
+  border-title-color: $border-title-color-nofocus;
+  background: $background;
+}
+
+Console:focus-within {
+  border: round $border-color-focus;
+  border-title-color: $border-title-color-focus;
+}
+
+Console Input {
+  border: none;
+  padding: 0;
+  height: 1;
+}
+
+#main {
+  height: 50%;
+  width: 100%;
+}
+
+#console-log {
+  height: 100%;
+}
