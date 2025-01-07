@@ -3,32 +3,59 @@ $border-title-color-nofocus: $panel;
 $border-color-focus: $primary;
 $border-title-color-focus: $primary;
 
-/* Console */
-
-Console {
-  height: 50%;
-
+Container {
   border: round $border-color-nofocus;
   border-title-color: $border-title-color-nofocus;
   background: $background;
 }
 
-Console:focus-within {
+Container:focus-within {
   border: round $border-color-focus;
   border-title-color: $border-title-color-focus;
 }
 
-Console Input {
-  border: none;
-  padding: 0;
-  height: 1;
+#main {
+  width: 1fr;
+  height: 2fr;
 }
 
-#main {
-  height: 50%;
-  width: 100%;
+/* Console */
+
+Console {
+  height: 1fr;
+  
+  #command-bar {
+    width: 1fr;
+    height: 1;
+  }
+
+  #execute-button {
+    height: 1;
+    border: none;
+    margin-left: 1;
+  }  
+
+  Input {
+    border: none;
+    padding: 0;
+    height: 1;
+  
+    margin-left: 1;
+    width: 1fr;
+  }
+
+  Rule {
+    color: $border-color-nofocus;
+    margin: 0;
+  }
+}
+
+Console:focus-within {
+  Rule {
+    color: $border-color-focus;
+  }
 }
 
 #console-log {
-  height: 100%;
+  height: 1fr;
 }

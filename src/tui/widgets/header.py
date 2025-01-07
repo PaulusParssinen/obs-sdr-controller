@@ -12,7 +12,7 @@ class HeaderClock(Widget):
     DEFAULT_CSS = """
     HeaderClock {
         dock: right;
-        width: 10;
+        width: 11;
         padding: 0 1;
 
         background: $foreground-darken-1 5%;
