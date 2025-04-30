@@ -13,6 +13,8 @@ class RichLogHandler(logging.Handler):
         super().__init__(level)
         self._log_widget = log_widget
 
+        self.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
+
     def emit(self, record):
         try:
             # Format the log message
@@ -40,15 +42,15 @@ class Console(Container):
     
     BORDER_TITLE = "Console"
 
+    def __init__(self) -> None:
+      super().__init__()
+
+      self._log = logging.getLogger("app")
+
     def compose(self) -> ComposeResult:
         self._rich_log = RichLog(id="console-log", markup=True)
         rich_handler = RichLogHandler(self._rich_log)
 
-        formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-        rich_handler.setFormatter(formatter)
-
-        self._log = logging.getLogger("console")
-        self._log.setLevel(logging.DEBUG)
         self._log.addHandler(rich_handler)
 
         with VerticalGroup():
@@ -65,7 +67,7 @@ class Console(Container):
     async def delayed_test_log(self):
         for i in range(50):
             await asyncio.sleep(0.1)
-            self._log.info(f"Test log message {i}")
+            self._log.debug(f"Test log message {i}")
     
     @on(Button.Pressed, "#execute-button")
     def on_execute_button(self) -> None:
@@ -78,6 +80,7 @@ class Console(Container):
     @on(Input.Submitted, "#command")
     def on_submit_command(self, event: Input.Submitted):
         self._log.info(f"Executing command: {event.value}")
+        self.app.log.error("test error")
         event.input.clear()
 
     @property

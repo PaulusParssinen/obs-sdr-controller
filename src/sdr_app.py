@@ -1,4 +1,6 @@
+from textual import on
 from textual.app import App
+from textual.events import Ready
 
 from .tui.screens.main import Main
 
@@ -17,3 +19,7 @@ class SdrControlApp(App):
   
   def on_mount(self) -> None:
     self.push_screen(Main())
+
+  @on(Ready)
+  def on_ready(self) -> None:
+    self.log.info("Welcome to the SDR controller!")

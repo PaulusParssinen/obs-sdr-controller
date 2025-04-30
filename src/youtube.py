@@ -10,8 +10,6 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 
-from config import Config
-
 if typing.TYPE_CHECKING:
     from googleapiclient._apis.youtube.v3 import YouTubeResource, LiveBroadcast, LiveChatMessage
 
@@ -23,10 +21,14 @@ SCOPES = ['https://www.googleapis.com/auth/youtube.force-ssl']
 
 
 class YouTubeAPI:
-    def __init__(self, config: Config):
+    def __init__(self, token_file: str = TOKEN_FILE, client_secret_file: str = CLIENT_SECRET_FILE) -> None:
         self.logger = logging.getLogger(__name__)
-        self.config = config
-        self.youtube: YouTubeResource = self.authenticate_youtube(config)
+        
+    @property
+    def youtube(self) -> YouTubeResource:
+        if not self._youtube:
+            raise ValueError('YouTube API not authenticated')
+        return self._youtube
 
     def authenticate_youtube(self) -> YouTubeResource:
         credentials = None
@@ -62,9 +64,8 @@ class YouTubeAPI:
             with open(TOKEN_FILE, 'w', encoding='utf-8') as token:
                 token.write(credentials.to_json())
 
-        _youtube = build(
+        return build(
             'youtube', 'v3', credentials=credentials, cache_discovery=False)
-        return _youtube
 
     def get_live_broadcasts(self) -> list[LiveBroadcast]:
         request = self.youtube.liveBroadcasts().list(
@@ -97,7 +98,8 @@ class YouTubeAPI:
     def poll_live_chat(self,
                        live_chat_id: str,
                        page_token: str,
-                       handle_message: Callable[[LiveChatMessage], None]):
+                       handle_message: Callable[[LiveChatMessage], None],
+                       poll_interval_ms: int = 0):
         processed_messages = set()
         while True:
             messages, page_token, _ = self.get_live_chat_messages(
@@ -113,4 +115,4 @@ class YouTubeAPI:
 
                 handle_message(message)
 
-            time.sleep(self.config.youtube.live_chat_poll_interval)
+            time.sleep(poll_interval_ms)

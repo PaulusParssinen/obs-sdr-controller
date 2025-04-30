@@ -16,13 +16,14 @@ Container:focus-within {
 
 #main {
   width: 1fr;
-  height: 2fr;
+  height: 1fr;
 }
 
 /* Console */
 
 Console {
   height: 1fr;
+  padding: 0 1;
   
   #command-bar {
     width: 1fr;
